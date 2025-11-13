@@ -236,12 +236,6 @@
             box-shadow: 0 10px 40px rgba(74, 42, 108, 0.6);
         }
 
-        /* Parallax layers */
-        .parallax-layer {
-            transition: transform 0.05s ease-out;
-            will-change: transform;
-        }
-
         /* Hero text with stagger animation */
         .hero-text h1 {
             opacity: 0;
@@ -487,7 +481,7 @@
     <section id="story" class="py-24 md:py-32 relative overflow-hidden">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in order-2 md:order-1 parallax-layer" data-speed="0.3">
+                <div class="fade-in order-2 md:order-1">
                     <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 text-[#4A2A6C]">
                         A Story of Love & Legacy
                     </h2>
@@ -508,7 +502,7 @@
                     </div>
                 </div>
 
-                <div class="fade-in order-1 md:order-2 parallax-layer" data-speed="0.2">
+                <div class="fade-in order-1 md:order-2">
                     <img src="./assets/image_30.jpg" alt="Chef Jose Sanchez" class="rounded-lg shadow-2xl w-full transform hover:scale-105 transition-transform duration-700">
                 </div>
             </div>
@@ -758,19 +752,6 @@
         }
 
         animateParticles();
-
-        // Enhanced parallax effect
-        const parallaxLayers = document.querySelectorAll('.parallax-layer');
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-
-            parallaxLayers.forEach(layer => {
-                const speed = layer.dataset.speed || 0.5;
-                const yPos = -(scrolled * speed);
-                layer.style.transform = `translateY(${yPos}px)`;
-            });
-        });
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
