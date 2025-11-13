@@ -193,23 +193,8 @@
         .reserve-btn {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(74, 42, 108, 0.4);
-            animation: pulse-glow 2.5s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(74, 42, 108, 0.3);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 30px rgba(74, 42, 108, 0.4),
-                            0 0 15px rgba(74, 42, 108, 0.2);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(74, 42, 108, 0.7),
-                            0 0 30px rgba(74, 42, 108, 0.5),
-                            inset 0 0 20px rgba(255, 255, 255, 0.1);
-                transform: scale(1.02);
-            }
         }
 
         .reserve-btn::before {
@@ -232,8 +217,8 @@
         }
 
         .reserve-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px rgba(74, 42, 108, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 42, 108, 0.4);
         }
 
         /* Hero text with stagger animation */
@@ -419,17 +404,21 @@
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full top-0 z-50 py-4 px-6 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <div class="orchid-logo">
+            <div class="orchid-logo flex items-center gap-3">
                 <img src="./assets/image_0.png" alt="Marcella Restaurante" class="h-16 md:h-20">
+                <div class="hidden sm:block">
+                    <h1 class="text-xl md:text-2xl font-light text-[#4A2A6C] tracking-wide">Marcella</h1>
+                    <p class="text-xs md:text-sm text-gray-600 font-light">Restaurante</p>
+                </div>
             </div>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Home</a>
-                <a href="#story" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Our Story</a>
-                <a href="#gallery" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Gallery</a>
-                <a href="#contact" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Contact</a>
-                <a href="tel:787-463-1403" class="reserve-btn relative bg-[#4A2A6C] text-white px-6 py-2 rounded-full text-sm uppercase tracking-wider hover:bg-[#5e3486] transition-colors">Reserve</a>
+                <a href="#home" class="menu-item text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Home</a>
+                <a href="#story" class="menu-item text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Our Story</a>
+                <a href="#gallery" class="menu-item text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Gallery</a>
+                <a href="#contact" class="menu-item text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Contact</a>
+                <a href="tel:787-463-1403" class="reserve-btn relative bg-[#4A2A6C] text-white px-8 py-3 rounded-full text-base uppercase tracking-wider hover:bg-[#5e3486] transition-colors">Reserve</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -443,11 +432,11 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="mobile-menu md:hidden">
             <div class="flex flex-col space-y-4 pt-4 pb-2">
-                <a href="#home" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Home</a>
-                <a href="#story" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Our Story</a>
-                <a href="#gallery" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Gallery</a>
-                <a href="#contact" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Contact</a>
-                <a href="tel:787-463-1403" class="bg-[#4A2A6C] text-white px-6 py-2 rounded-full text-sm uppercase tracking-wider text-center mx-6">Reserve</a>
+                <a href="#home" class="text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Home</a>
+                <a href="#story" class="text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Our Story</a>
+                <a href="#gallery" class="text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Gallery</a>
+                <a href="#contact" class="text-base uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Contact</a>
+                <a href="tel:787-463-1403" class="bg-[#4A2A6C] text-white px-6 py-3 rounded-full text-base uppercase tracking-wider text-center mx-6">Reserve</a>
             </div>
         </div>
     </nav>
