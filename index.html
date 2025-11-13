@@ -3,9 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <title>Marcella Restaurante | Best Restaurant in San Juan Puerto Rico</title>
+    <meta name="description" content="Discover Marcella Restaurante — the best restaurant in San Juan, Puerto Rico. Fine dining at Paseo Caribe with exquisite Puerto Rican and international cuisine.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+            background: #FFFFFF;
+            color: #1A1A1A;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+        }
+
+        /* Animated Orchard Background */
+        .orchard-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #F3E5F5 0%, #FFFFFF 50%, #F3E5F5 100%);
+            overflow: hidden;
+        }
+
+        .orchid-petal {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(74, 42, 108, 0.1);
+        }
+
+        /* Smooth fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Menu item hover effect */
+        .menu-item {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #D1C4E9;
+            transition: width 0.4s ease-in-out;
+        }
+
+        .menu-item:hover::after {
+            width: 100%;
+        }
+
+        /* Image gallery animation */
+        .gallery-image {
+            filter: saturate(0.3);
+            transform: scale(1.05);
+            transition: all 0.8s ease-out;
+        }
+
+        .gallery-image.visible {
+            filter: saturate(1);
+            transform: scale(1);
+        }
+
+        /* Reserve button glow */
+        .reserve-btn {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(74, 42, 108, 0.3);
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(74, 42, 108, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(74, 42, 108, 0.6);
+            }
+        }
+
+        .reserve-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .reserve-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Parallax effect */
+        .parallax {
+            transform: translateY(0);
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Hero text animation */
+        .hero-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroFadeIn 1.5s ease-out 0.5s forwards;
+        }
+
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Orchid logo animation */
+        .orchid-logo {
+            opacity: 0;
+            transform: scale(0.8);
+            animation: logoFadeIn 1s ease-out 0.2s forwards;
+        }
+
+        @keyframes logoFadeIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating orchids in background */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .floating-orchid {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Overlay blur effect */
+        .blur-overlay {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Story section orchid petals drift */
+        .drifting-petal {
+            position: absolute;
+            opacity: 0;
+            animation: drift 5s linear forwards;
+        }
+
+        @keyframes drift {
+            0% {
+                opacity: 0;
+                transform: translateX(100vw) rotate(0deg);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100vw) rotate(-360deg);
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Content will be added here -->
+    <!-- Animated Orchard Background -->
+    <div class="orchard-background" id="orchardBg"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="orchid-logo">
+                <img src="./assets/image_0.png" alt="Marcella Restaurante" class="h-16 md:h-20">
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Home</a>
+                <a href="#story" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Our Story</a>
+                <a href="#gallery" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Gallery</a>
+                <a href="#contact" class="menu-item text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors">Contact</a>
+                <a href="tel:787-463-1403" class="reserve-btn relative bg-[#4A2A6C] text-white px-6 py-2 rounded-full text-sm uppercase tracking-wider hover:bg-[#5e3486] transition-colors">Reserve</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-[#4A2A6C]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <div class="flex flex-col space-y-4 pt-4 pb-2">
+                <a href="#home" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Home</a>
+                <a href="#story" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Our Story</a>
+                <a href="#gallery" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Gallery</a>
+                <a href="#contact" class="text-sm uppercase tracking-wider text-gray-700 hover:text-[#4A2A6C] transition-colors px-6">Contact</a>
+                <a href="tel:787-463-1403" class="bg-[#4A2A6C] text-white px-6 py-2 rounded-full text-sm uppercase tracking-wider text-center mx-6">Reserve</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative pt-24 pb-24">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="hero-text">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl mb-6 text-[#4A2A6C] tracking-tight">
+                    Marcella Restaurante
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-4 font-light">
+                    by Chef Jose Sanchez
+                </p>
+                <p class="text-lg md:text-xl text-gray-500 mb-12 max-w-2xl mx-auto font-light">
+                    A tribute to creative Creole gastronomy in the heart of San Juan, Puerto Rico
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="tel:787-463-1403" class="reserve-btn bg-[#4A2A6C] text-white px-8 py-4 rounded-full text-base uppercase tracking-wider hover:bg-[#5e3486] transition-colors">
+                        Reserve a Table
+                    </a>
+                    <a href="#story" class="bg-white border-2 border-[#4A2A6C] text-[#4A2A6C] px-8 py-4 rounded-full text-base uppercase tracking-wider hover:bg-[#F3E5F5] transition-colors">
+                        Our Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="py-24 md:py-32 relative overflow-hidden">
+        <div id="storyPetals" class="absolute inset-0 pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in order-2 md:order-1">
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 text-[#4A2A6C]">
+                        A Story of Love & Legacy
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Named after Chef Jose Sanchez's beloved grandmother, Marcella Restaurante is more than a dining destination—it's a heartfelt tribute to the woman who ignited his passion for cooking.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        The violet orchid, her favorite flower, blooms throughout our restaurant as a symbol of beauty, elegance, and the delicate artistry that defines every dish we create.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our cuisine celebrates Puerto Rico's rich culinary heritage, blending local farm-to-table ingredients with international techniques to create unforgettable experiences.
+                    </p>
+                    <div class="blur-overlay inline-block px-6 py-4 rounded-lg">
+                        <p class="text-[#4A2A6C] italic text-lg font-light">
+                            "Every plate tells a story, every flavor honors tradition."
+                        </p>
+                        <p class="text-gray-600 mt-2">— Chef Jose Sanchez</p>
+                    </div>
+                </div>
+
+                <div class="fade-in order-1 md:order-2">
+                    <img src="./assets/image_30.jpg" alt="Chef Jose Sanchez" class="rounded-lg shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes Gallery -->
+    <section id="gallery" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl mb-6 text-[#4A2A6C]">
+                    Culinary Artistry
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Each dish is crafted with passion, celebrating the vibrant flavors of Puerto Rico
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_10.jpg" alt="Signature Dish" class="w-full h-80 object-cover">
+                </div>
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_16.jpg" alt="Fresh Cocktails" class="w-full h-80 object-cover">
+                </div>
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_18.jpg" alt="Peargarita" class="w-full h-80 object-cover">
+                </div>
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_11.jpg" alt="Gourmet Cuisine" class="w-full h-80 object-cover">
+                </div>
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_12.jpg" alt="Fine Dining" class="w-full h-80 object-cover">
+                </div>
+                <div class="gallery-image overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow">
+                    <img src="./assets/image_13.jpg" alt="Creative Plates" class="w-full h-80 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-24 md:py-32 relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in blur-overlay rounded-2xl p-12 shadow-xl">
+                <h2 class="text-4xl md:text-5xl mb-6 text-[#4A2A6C]">
+                    Experience Marcella
+                </h2>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Located in the prestigious Paseo Caribe, our restaurant offers a relaxed yet refined atmosphere where every meal becomes a cherished memory. Join us for an extraordinary culinary journey.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-2xl text-[#4A2A6C] mb-2">Farm to Table</h3>
+                        <p class="text-gray-600">Fresh, seasonal ingredients from local Puerto Rican farmers</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl text-[#4A2A6C] mb-2">Creative Menu</h3>
+                        <p class="text-gray-600">Innovative Creole cuisine with international influences</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl text-[#4A2A6C] mb-2">Cozy Ambiance</h3>
+                        <p class="text-gray-600">Elegant yet relaxed atmosphere for every occasion</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer id="contact" class="bg-[#4A2A6C] text-white py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-8">
+                <div>
+                    <img src="./assets/image_0.png" alt="Marcella Logo" class="h-20 mb-4 brightness-0 invert">
+                    <p class="text-gray-300 leading-relaxed">
+                        A tribute to tradition, passion, and the art of fine dining in San Juan, Puerto Rico.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl mb-4 font-light tracking-wide">Contact</h3>
+                    <p class="text-gray-300 mb-2">Paseo Caribe Building</p>
+                    <p class="text-gray-300 mb-2">15 Av. Luis Muñoz Rivera</p>
+                    <p class="text-gray-300 mb-4">San Juan, 00901</p>
+                    <p class="mb-2">
+                        <a href="tel:787-463-1403" class="text-[#D1C4E9] hover:text-white transition-colors">
+                            787-463-1403
+                        </a>
+                    </p>
+                    <p>
+                        <a href="mailto:marcellabyjose@gmail.com" class="text-[#D1C4E9] hover:text-white transition-colors">
+                            marcellabyjose@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl mb-4 font-light tracking-wide">Hours</h3>
+                    <p class="text-gray-300 mb-2">Tuesday - Sunday</p>
+                    <p class="text-gray-300 mb-4">5:00 PM - 11:00 PM</p>
+                    <p class="text-gray-300 mb-4">Monday Closed</p>
+                    <a href="tel:787-463-1403" class="inline-block bg-white text-[#4A2A6C] px-6 py-3 rounded-full text-sm uppercase tracking-wider hover:bg-[#F3E5F5] transition-colors">
+                        Call for Reservation
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-purple-400 pt-8 text-center text-gray-300 text-sm">
+                <p>&copy; 2025 Marcella Restaurante by Jose Sanchez. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const galleryImages = document.querySelectorAll('.gallery-image');
+
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+        galleryImages.forEach(el => observer.observe(el));
+
+        // Animated orchid background
+        const orchardBg = document.getElementById('orchardBg');
+        const petalColors = ['#D1C4E9', '#F3E5F5', '#E1BEE7', '#CE93D8'];
+
+        function createOrchidPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'orchid-petal';
+
+            // Random size
+            const size = Math.random() * 40 + 20;
+            petal.style.width = size + 'px';
+            petal.style.height = size + 'px';
+            petal.style.borderRadius = '50%';
+            petal.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+
+            // Random starting position
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = Math.random() * 100 + 'vh';
+
+            orchardBg.appendChild(petal);
+
+            // Animate the petal
+            animatePetal(petal);
+        }
+
+        function animatePetal(petal) {
+            const startX = parseFloat(petal.style.left);
+            const startY = parseFloat(petal.style.top);
+            const duration = Math.random() * 15000 + 10000; // 10-25 seconds
+            const endX = Math.random() * 100;
+            const endY = Math.random() * 100;
+            const rotation = Math.random() * 360;
+
+            petal.animate([
+                {
+                    left: startX + 'vw',
+                    top: startY + 'vh',
+                    opacity: 0,
+                    transform: 'rotate(0deg) scale(0)'
+                },
+                {
+                    opacity: 0.6,
+                    transform: `rotate(${rotation * 0.5}deg) scale(1)`,
+                    offset: 0.1
+                },
+                {
+                    opacity: 0.6,
+                    offset: 0.9
+                },
+                {
+                    left: endX + 'vw',
+                    top: endY + 'vh',
+                    opacity: 0,
+                    transform: `rotate(${rotation}deg) scale(0)`
+                }
+            ], {
+                duration: duration,
+                easing: 'ease-in-out'
+            }).onfinish = () => {
+                petal.remove();
+            };
+        }
+
+        // Create petals periodically
+        setInterval(createOrchidPetal, 800);
+
+        // Create initial petals
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createOrchidPetal, i * 200);
+        }
+
+        // Story section - drifting petals on scroll
+        let storyPetalsTriggered = false;
+        const storySection = document.getElementById('story');
+        const storyPetalsContainer = document.getElementById('storyPetals');
+
+        const storyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !storyPetalsTriggered) {
+                    storyPetalsTriggered = true;
+                    createDriftingPetals();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        storyObserver.observe(storySection);
+
+        function createDriftingPetals() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('img');
+                    petal.src = './assets/image_0.png';
+                    petal.className = 'drifting-petal';
+                    petal.style.width = Math.random() * 60 + 40 + 'px';
+                    petal.style.top = Math.random() * 80 + 10 + '%';
+                    petal.style.animationDelay = Math.random() * 1 + 's';
+                    storyPetalsContainer.appendChild(petal);
+
+                    setTimeout(() => petal.remove(), 6000);
+                }, i * 600);
+            }
+        }
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
